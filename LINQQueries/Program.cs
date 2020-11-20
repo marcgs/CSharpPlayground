@@ -11,9 +11,14 @@ namespace LINQQueries
         static void Main(string[] args)
         {
             var cars = ProcessFile("cars.csv");
-            foreach (var car in cars)
+
+            var query = from car in cars
+                orderby car.Combined descending, car.Name
+                select car;
+
+            foreach (var car in query.Take(10))
             {
-                Console.WriteLine(car.Name);
+                Console.WriteLine($"{car.Name} : {car.Combined}");
             }
         }
 
