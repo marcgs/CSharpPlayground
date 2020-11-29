@@ -14,20 +14,26 @@ namespace LINQQueries
 
             var query = from car in cars
                 orderby car.Combined descending, car.Name
-                select car;
+                select new
+                {
+                    car.Manufacturer,
+                    car.Name,
+                    car.Combined
+                };
 
             foreach (var car in query.Take(10))
             {
-                Console.WriteLine($"{car.Name} : {car.Combined}");
+                Console.WriteLine($"{car.Manufacturer} {car.Name} : {car.Combined}");
             }
         }
 
         private static List<Car> ProcessFile(string path)
         {
-            var query = 
-                from line in File.ReadAllLines(path).Skip(1)
-                where line.Length > 1
-                select Car.FromCsvLine(line);
+            var query = File.ReadAllLines(path)
+                .Skip(1)
+                .Where(line => line.Length > 1)
+                .ToCar();
+            
             return query.ToList();
         }
     }
