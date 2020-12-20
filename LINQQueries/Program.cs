@@ -13,7 +13,8 @@ namespace LINQQueries
             var cars = ProcessCars("cars.csv");
             var manufacturers = ProcessManufacturers("manufacturers.csv");
 
-            var query = from car in cars
+            // join query
+            var joinQuery = from car in cars
                 join manufacturer in manufacturers on (car.Manufacturer, car.Year) equals (manufacturer.Name, manufacturer.Year) 
                 orderby car.Combined descending, car.Name
                 select new
@@ -23,9 +24,25 @@ namespace LINQQueries
                     car.Combined
                 };
 
-            foreach (var car in query.Take(10))
+            Console.WriteLine("----- CARS ------");
+            foreach (var car in joinQuery.Take(10))
             {
-                Console.WriteLine($"{car.Headquarters} {car.Name} : {car.Combined}");
+                Console.WriteLine($"{car.Name} ({car.Headquarters}) : {car.Combined}");
+            }
+            
+            // group by
+            var groupByQuery = from car in cars
+                join manufacturer in manufacturers on (car.Manufacturer, car.Year) equals (manufacturer.Name, manufacturer.Year)
+                group car by (manufacturer.Name, manufacturer.Year);
+            
+            Console.WriteLine("----- MANUFACTURERS ------");
+            foreach (var group in groupByQuery)
+            {
+                Console.WriteLine($"{group.Key.Name} has {group.Count()} cars in {group.Key.Year}. Top 2 efficient:");
+                foreach (var car in group.OrderByDescending(c => c.Combined).Take(2))
+                {
+                    Console.WriteLine($"  {car.Name} : {car.Combined}");
+                }
             }
         }
 
