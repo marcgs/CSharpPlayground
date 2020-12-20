@@ -7,6 +7,7 @@
     
     <ItemGroup>
         <None Update="cars.csv" CopyToOutputDirectory="PreserveNewest" />
+        <None Update="manufacturers.csv" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 
 </Project>

@@ -22,5 +22,19 @@ namespace LINQQueries
                 };
             }
         }
+
+        public static IEnumerable<Manufacturer> ToManufacturer(this IEnumerable<string> lines)
+        {
+            foreach (var line in lines)
+            {
+                var cols = line.Split(",");
+                yield return new Manufacturer()
+                {
+                    Name = cols[0],
+                    Headquarters = cols[1],
+                    Year = int.Parse(cols[2]),
+                };
+            }
+        }
     }
 }
