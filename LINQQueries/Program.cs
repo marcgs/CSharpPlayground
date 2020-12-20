@@ -14,6 +14,7 @@ namespace LINQQueries
             var manufacturers = ProcessManufacturers("manufacturers.csv");
 
             // join query
+            Console.WriteLine("----- CARS ------");
             var joinQuery = from car in cars
                 join manufacturer in manufacturers on (car.Manufacturer, car.Year) equals (manufacturer.Name, manufacturer.Year) 
                 orderby car.Combined descending, car.Name
@@ -24,22 +25,42 @@ namespace LINQQueries
                     car.Combined
                 };
 
-            Console.WriteLine("----- CARS ------");
             foreach (var car in joinQuery.Take(10))
             {
                 Console.WriteLine($"{car.Name} ({car.Headquarters}) : {car.Combined}");
             }
             
             // group by
+            Console.WriteLine("----- MANUFACTURERS ------");
             var groupByQuery = from car in cars
                 join manufacturer in manufacturers on (car.Manufacturer, car.Year) equals (manufacturer.Name, manufacturer.Year)
                 group car by (manufacturer.Name, manufacturer.Year);
             
-            Console.WriteLine("----- MANUFACTURERS ------");
             foreach (var group in groupByQuery)
             {
                 Console.WriteLine($"{group.Key.Name} has {group.Count()} cars in {group.Key.Year}. Top 2 efficient:");
                 foreach (var car in group.OrderByDescending(c => c.Combined).Take(2))
+                {
+                    Console.WriteLine($"  {car.Name} : {car.Combined}");
+                }
+            }
+            
+            // joinGroup
+            Console.WriteLine("----- COUNTRIES ------");
+            var joinGroupQuery = from manufacturer in manufacturers
+                join car in cars on (manufacturer.Name, manufacturer.Year) equals (car.Manufacturer, car.Year) 
+                    into carGroup
+                select new
+                {
+                     Manufacturer = manufacturer,
+                     Cars = carGroup
+                } into result
+                group result by result.Manufacturer.Headquarters;
+
+            foreach (var result in joinGroupQuery)
+            {
+                Console.WriteLine($"{result.Key} has {result.Count()} cars. Top 2 efficient:");
+                foreach (var car in result.SelectMany(g => g.Cars).OrderByDescending(c => c.Combined).Take(2))
                 {
                     Console.WriteLine($"  {car.Name} : {car.Combined}");
                 }
