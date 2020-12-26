@@ -65,6 +65,26 @@ namespace LINQQueries
                     Console.WriteLine($"  {car.Name} : {car.Combined}");
                 }
             }
+            
+            Console.WriteLine("----- STATISTICS ------");
+            var groupStats = from car in cars
+                group car by car.Manufacturer
+                into carGroup
+                select new
+                {
+                    Name = carGroup.Key,
+                    Max = carGroup.Max(c => c.Combined),
+                    Min = carGroup.Min(c => c.Combined),
+                    Avg = carGroup.Average(c => c.Combined),
+                };
+            
+            foreach (var groupStat in groupStats)
+            {
+                Console.WriteLine($"{groupStat.Name}");
+                Console.WriteLine($"  Max: {groupStat.Max}");
+                Console.WriteLine($"  Min: {groupStat.Min}");
+                Console.WriteLine($"  Avg: {groupStat.Avg}");
+            }
         }
 
         private static List<Car> ProcessCars(string path)
