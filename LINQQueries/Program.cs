@@ -76,7 +76,9 @@ namespace LINQQueries
                     Max = carGroup.Max(c => c.Combined),
                     Min = carGroup.Min(c => c.Combined),
                     Avg = carGroup.Average(c => c.Combined),
-                };
+                } into result
+                orderby result.Max descending 
+                select result;
             
             foreach (var groupStat in groupStats)
             {
