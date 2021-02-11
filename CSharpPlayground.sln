@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuples", "Tuples\Tuples.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAwait", "AsyncAwait\AsyncAwait.csproj", "{EBAFE92C-F258-45C2-945C-3AED4ADD108A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regex", "Regex\Regex.csproj", "{AB48A6D2-FC6B-4EA4-804E-B4AA49BA1AEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{EBAFE92C-F258-45C2-945C-3AED4ADD108A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBAFE92C-F258-45C2-945C-3AED4ADD108A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBAFE92C-F258-45C2-945C-3AED4ADD108A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB48A6D2-FC6B-4EA4-804E-B4AA49BA1AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB48A6D2-FC6B-4EA4-804E-B4AA49BA1AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB48A6D2-FC6B-4EA4-804E-B4AA49BA1AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB48A6D2-FC6B-4EA4-804E-B4AA49BA1AEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
