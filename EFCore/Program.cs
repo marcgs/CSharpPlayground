@@ -3,6 +3,7 @@
 namespace EFCore
 {
     using System.Linq;
+    using Model;
 
     class Program
     {

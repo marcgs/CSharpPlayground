@@ -1,4 +1,4 @@
-namespace EFCore
+namespace EFCore.Model
 {
     public class Post
     {

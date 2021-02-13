@@ -1,6 +1,7 @@
 namespace EFCore
 {
     using Microsoft.EntityFrameworkCore;
+    using Model;
 
     public class BloggingContext : DbContext
     {

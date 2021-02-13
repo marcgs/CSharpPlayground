@@ -1,4 +1,4 @@
-namespace EFCore
+namespace EFCore.Model
 {
     using System.Collections.Generic;
 
