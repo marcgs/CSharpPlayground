@@ -3,14 +3,16 @@ using System;
 using EFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    partial class BloggingContextModelSnapshot : ModelSnapshot
+    [Migration("20210216074233_UserProfile")]
+    partial class UserProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

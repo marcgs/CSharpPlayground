@@ -8,5 +8,8 @@ namespace EFCore.Model
         public string Url { get; set; }
 
         public List<Post> Posts { get; } = new List<Post>();
+
+        public int ProfileId { get; set; }
+        public Profile Profile { get; set; }
     }
 }

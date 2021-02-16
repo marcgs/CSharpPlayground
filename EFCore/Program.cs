@@ -12,8 +12,11 @@ namespace EFCore
             using (var db = new BloggingContext())
             {
                 // Create
-                Console.WriteLine("Inserting a new blog");
-                db.Add(new Blog() {Url = "https://marcgs.github.io/"});
+                Console.WriteLine("Creating User with Profile");
+                var user = new User {Name = "Marc"};
+                user.Profile = new Profile { Url = "https://myprofile.com"};
+                user.Profile.Blog = new Blog {Url = "https://marcgs.github.io/"};
+                db.Add(user);
                 db.SaveChanges();
                 
                 // Read
@@ -30,9 +33,9 @@ namespace EFCore
                 db.SaveChanges();
                 
                 // Delete
-                Console.WriteLine("Delete the blog");
-                db.Remove(blog);
-                db.SaveChanges();
+                //Console.WriteLine("Deleting data");
+                //db.Remove(user);
+                //db.SaveChanges();
             }
         }
     }
